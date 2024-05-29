@@ -120,7 +120,7 @@ Routes and Triggers
 1. **Follow Request:**
     - Endpoint: /follow
     - Trigger: Sending a follow request to a user.
-    - Example CURL: curl -X POST -H "Content-Type: application/json" -d '{"username": "target_username"}' http://localhost:3000/follow
+    - Example CURL: "curl -X POST -H "Content-Type: application/json" -d '{"username": "target_username"}' http://localhost:3000/follow"
 
 
 2. **Create Post:**
