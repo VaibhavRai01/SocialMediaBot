@@ -115,54 +115,69 @@ SocialMedia Bot is a Node.js application designed to automate various interactio
     - Uses the `login()` function to authenticate and then updates the display photo using `ig.account.changeProfilePicture()`.
 
 
+Routes and Triggers
 
-### Routes:
+1. **Follow Request:**
+    - Endpoint: /follow
+    - Trigger: Sending a follow request to a user.
+    - Example CURL: curl -X POST -H "Content-Type: application/json" -d '{"username": "target_username"}' http://localhost:3000/follow
 
-1. **POST /follow:**
-   - Endpoint to send a follow request to a specified Instagram user.
-   - Requires the `username` of the target user in the request body.
-   - Calls the `sendFollowRequest(username)` function.
 
-2. **POST /createPost:**
-   - Endpoint to create a new post on Instagram.
-   - Requires the `imagePath` (file path of the image) and `caption` in the request body.
-   - Calls the `createPost(imagePath, caption)` function.
+2. **Create Post:**
+    - Endpoint: /createPost
+    - Trigger: Creating a new post with an image and caption.
+    - Example CURL: curl -X POST -H "Content-Type: application/json" -d '{"imagePath": "/path/to/image.jpg", "caption": "This is the caption"}' http://localhost:3000/createPost
 
-3. **POST /likePost:**
-   - Endpoint to like a post by a specified Instagram user.
-   - Requires the `username` of the target user in the request body.
-   - Calls the `likeOnPost(username)` function.
 
-4. **POST /commentOnPost:**
-   - Endpoint to add a comment to a post by a specified Instagram user.
-   - Requires the `username` of the target user and the `commentText` in the request body.
-   - Calls the `commentOnPost(username, commentText)` function.
+3. **Like Post:**
+    - Endpoint: /likePost
+    - Trigger: Liking a post by a specific user.
+    - Example CURL: curl -X POST -H "Content-Type: application/json" -d '{"username": "target_username"}' http://localhost:3000/likePost
 
-5. **POST /scrapeUserData:**
-   - Endpoint to scrape and save user data for a specified Instagram username.
-   - Requires the `username` of the target user in the request body.
-   - Calls the `scrapeUserData(username)` function.
 
-6. **POST /trendMonitoring:**
-   - Endpoint to monitor trending hashtags on Instagram.
-   - No request body required.
-   - Calls the `trendMonitoring()` function.
+4. **Comment on Post:**
+    - Endpoint: /commentOnPost
+    - Trigger: Adding a comment to a post by a specific user.
+    - Example CURL: curl -X POST -H "Content-Type: application/json" -d '{"username": "target_username", "commentText": "This is the comment"}' http://localhost:3000/commentOnPost
 
-7. **POST /analyticsAndReporting:**
-   - Endpoint to analyze and report user analytics for a specified Instagram username.
-   - Requires the `username` of the target user in the request body.
-   - Calls the `analyticsAndReporting(username)` function.
 
-8. **POST /update-bio:**
-   - Endpoint to update the bio (description) of the Instagram account.
-   - Requires the `username` of the Instagram account and the `newBio` text in the request body.
-   - Calls the `updateBio(username, newBio)` function.
+5. **Scrape User Data:**
+    - Endpoint: /scrapeUserData
+    - Trigger: Scraping and saving user profile data from Instagram.
+    - Example CURL: curl -X POST -H "Content-Type: application/json" -d '{"username": "target_username"}' http://localhost:3000/scrapeUserData
 
-9. **POST /update-display-photo:**
-   - Endpoint to update the display photo (profile picture) of the Instagram account.
-   - Requires the `username` of the Instagram account and the `photoPath` (file path of the new profile picture) in the request body.
-   - Calls the `updateDisplayPhoto(username, photoPath)` function.
 
+6. **Trend Monitoring:**
+    - Endpoint: /trendMonitoring
+    - Trigger: Monitoring trending hashtags on Instagram.
+    - Example CURL: curl -X POST http://localhost:3000/trendMonitoring
+
+
+7. **Analytics and Reporting:**
+    - Endpoint: /analyticsAndReporting
+    - Trigger: Analyzing and reporting user analytics.
+    - Example CURL: curl -X POST -H "Content-Type: application/json" -d '{"username": "target_username"}' http://localhost:3000/analyticsAndReporting
+
+
+8. **Accept Follow Requests:**
+    - Endpoint: /acceptFollowRequests
+    - Trigger: Accepting pending follow requests on the Instagram account.
+    - Example CURL: curl -X POST http://localhost:3000/acceptFollowRequests
+
+
+9. **Update Bio:**
+    - Endpoint: /update-bio
+    - Trigger: Updating the bio (description) of the Instagram account.
+    - Example CURL: curl -X POST -H "Content-Type: application/json" -d '{"username": "target_username", "newBio": "New bio text"}' http://localhost:3000/update-bio
+
+
+10. **Update Display Photo:**
+    - Endpoint: /update-display-photo
+    - Trigger: Updating the display photo (profile picture) of the Instagram account.
+    - Example CURL: curl -X POST -H "Content-Type: application/json" -d '{"username": "target_username", "photoPath": "/path/to/new_photo.jpg"}' http://localhost:3000/update-display-photo
+
+
+Replace target_username with the username of the target user, /path/to/image.jpg with the path to the image file, and /path/to/new_photo.jpg with the path to the new profile photo. Adjust the URL if the server is running on a different port or domain.
 Each route handles specific actions and calls the corresponding function to perform those actions. Additionally, error handling middleware is implemented to catch and log any errors that occur during the execution of routes.
 
 
