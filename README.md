@@ -1,2 +1,0 @@
-# SocialMediaBot
-SocialMediaBot
