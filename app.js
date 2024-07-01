@@ -19,15 +19,10 @@ app.use((err, req, res, next) => {
 });
 
 async function login() {
-    ig.state.generateDevice("username");
-    
     try {
-
-        await ig.simulate.preLoginFlow();
-        const loggedInUser = await ig.account.login("username", "password");
-        await ig.simulate.postLoginFlow();
+        await ig.state.generateDevice(process.env.IG_USERNAME);
+        await ig.account.login(process.env.IG_USERNAME, process.env.IG_PASSWORD);
         console.log('Login successful');
-        return loggedInUser;
     } catch (error) {
         console.error('Failed to login:', error);
         throw error;
@@ -169,7 +164,7 @@ async function acceptFollowRequests() {
 
         while (requests.length) {
             for (let user of requests) {
-                await ig.friendship.approve(user.pk);
+                await ig.friendship.approve({ userId: user.pk });
                 console.log(`Accepted follow request from: ${user.username}`);
             }
             requests = await requestsFeed.items();
@@ -184,13 +179,7 @@ async function likeOnPost(username) {
     try {
         await login();
         const mId = await getMediaIdByUsername(username);
-        await ig.media.like({
-            mediaId: mId,
-            moduleInfo: {
-                module_name: 'profile',
-            },
-            d: 1,
-        });
+        await ig.media.like({ mediaId: mId });
         console.log(`Liked post with ID: ${mId}`);
     } catch (err) {
         console.error(`Failed to like on post:`, err);
@@ -216,10 +205,8 @@ async function commentOnPost(username, commentText) {
 async function updateBio(username, newBio) {
     try {
         await login();
-        const userId = await ig.user.getIdByUsername(username);
-        await ig.account.editProfile({
+        await ig.account.updateProfile({
             biography: newBio,
-            username: username,
         });
         console.log(`Updated bio for ${username} to: ${newBio}`);
     } catch (err) {
@@ -232,7 +219,7 @@ async function updateDisplayPhoto(username, photoPath) {
     try {
         await login();
         const imageBuffer = await readFile(photoPath);
-        await ig.account.changeProfilePicture(imageBuffer);
+        await ig.account.changeProfilePicture({ image: imageBuffer });
         console.log(`Updated display photo for ${username}`);
     } catch (err) {
         console.error(`Failed to update display photo for ${username}:`, err);
