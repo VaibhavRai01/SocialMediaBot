@@ -120,31 +120,31 @@ Routes and Triggers
 1. **Follow Request:**
     - Endpoint: /follow
     - Trigger: Sending a follow request to a user.
-    - Example CURL: "curl -X POST -H "Content-Type: application/json" -d '{"username": "target_username"}' http://localhost:3000/follow"
+    - Example CURL: "curl -X POST -H "Content-Type: application/json" -d "{\"username\": \"user\"}" http://localhost:3000/follow"
 
 
 2. **Create Post:**
     - Endpoint: /createPost
     - Trigger: Creating a new post with an image and caption.
-    - Example CURL: curl -X POST -H "Content-Type: application/json" -d '{"imagePath": "/path/to/image.jpg", "caption": "This is the caption"}' http://localhost:3000/createPost
+    - Example CURL: curl -X POST -H "Content-Type: application/json" -d "{\"imagePath\": \"/path/to/image.jpg\", \"caption\": \"This is the caption\"}" http://localhost:3000/createPost
 
 
 3. **Like Post:**
     - Endpoint: /likePost
     - Trigger: Liking a post by a specific user.
-    - Example CURL: curl -X POST -H "Content-Type: application/json" -d '{"username": "target_username"}' http://localhost:3000/likePost
+    - Example CURL: curl -X POST -H "Content-Type: application/json" -d "{\"username\": \"user\"}" http://localhost:3000/likePost
 
 
 4. **Comment on Post:**
     - Endpoint: /commentOnPost
     - Trigger: Adding a comment to a post by a specific user.
-    - Example CURL: curl -X POST -H "Content-Type: application/json" -d '{"username": "target_username", "commentText": "This is the comment"}' http://localhost:3000/commentOnPost
+    - Example CURL: curl -X POST -H "Content-Type: application/json" -d "{\"username\": \"target_username\", \"commentText\": \"This is the comment\"}" http://localhost:3000/commentOnPost
 
 
 5. **Scrape User Data:**
     - Endpoint: /scrapeUserData
     - Trigger: Scraping and saving user profile data from Instagram.
-    - Example CURL: curl -X POST -H "Content-Type: application/json" -d '{"username": "target_username"}' http://localhost:3000/scrapeUserData
+    - Example CURL: curl -X POST -H "Content-Type: application/json" -d "{\"username\": \"target_username\"}" http://localhost:3000/scrapeUserData
 
 
 6. **Trend Monitoring:**
@@ -156,7 +156,7 @@ Routes and Triggers
 7. **Analytics and Reporting:**
     - Endpoint: /analyticsAndReporting
     - Trigger: Analyzing and reporting user analytics.
-    - Example CURL: curl -X POST -H "Content-Type: application/json" -d '{"username": "target_username"}' http://localhost:3000/analyticsAndReporting
+    - Example CURL: curl -X POST -H "Content-Type: application/json" -d "{\"username\": \"target_username\"}" http://localhost:3000/analyticsAndReporting
 
 
 8. **Accept Follow Requests:**
@@ -168,13 +168,13 @@ Routes and Triggers
 9. **Update Bio:**
     - Endpoint: /update-bio
     - Trigger: Updating the bio (description) of the Instagram account.
-    - Example CURL: curl -X POST -H "Content-Type: application/json" -d '{"username": "target_username", "newBio": "New bio text"}' http://localhost:3000/update-bio
+    - Example CURL: curl -X POST -H "Content-Type: application/json" -d "{\"username\": \"target_username\", \"newBio\": \"New bio text\"}" http://localhost:3000/update-bio
 
 
 10. **Update Display Photo:**
     - Endpoint: /update-display-photo
     - Trigger: Updating the display photo (profile picture) of the Instagram account.
-    - Example CURL: curl -X POST -H "Content-Type: application/json" -d '{"username": "target_username", "photoPath": "/path/to/new_photo.jpg"}' http://localhost:3000/update-display-photo
+    - Example CURL: curl -X POST -H "Content-Type: application/json" -d "{\"username\": \"target_username\", \"photoPath\": \"/path/to/new_photo.jpg\"}" http://localhost:3000/update-display-photo
 
 
 Replace target_username with the username of the target user, /path/to/image.jpg with the path to the image file, and /path/to/new_photo.jpg with the path to the new profile photo. Adjust the URL if the server is running on a different port or domain.
