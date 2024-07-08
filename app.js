@@ -20,8 +20,8 @@ app.use((err, req, res, next) => {
 
 async function login() {
     try {
-        await ig.state.generateDevice(process.env.IG_USERNAME);
-        await ig.account.login(process.env.IG_USERNAME, process.env.IG_PASSWORD);
+        await ig.state.generateDevice("username");
+        await ig.account.login("username", "password");
         console.log('Login successful');
     } catch (error) {
         console.error('Failed to login:', error);
@@ -179,7 +179,11 @@ async function likeOnPost(username) {
     try {
         await login();
         const mId = await getMediaIdByUsername(username);
-        await ig.media.like({ mediaId: mId });
+        await ig.media.like({
+            mediaId: mId, moduleInfo: {
+                module_name: 'profile',
+            },
+        });
         console.log(`Liked post with ID: ${mId}`);
     } catch (err) {
         console.error(`Failed to like on post:`, err);
@@ -205,7 +209,7 @@ async function commentOnPost(username, commentText) {
 async function updateBio(username, newBio) {
     try {
         await login();
-        await ig.account.updateProfile({
+        await ig.account.editProfile({
             biography: newBio,
         });
         console.log(`Updated bio for ${username} to: ${newBio}`);
